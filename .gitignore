@@ -1,8 +1,9 @@
 *.class
 
-# IDE directories #
+# IDE #
 .settings
 .idea
+.classpath
 
 # Package Files #
 *.jar
