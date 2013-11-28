@@ -42,7 +42,7 @@
 						</tasks>
 					</configuration>
 					<goals>
-						<goal>repack</goal>
+						<goal>run</goal>
 					</goals>
 					</execution>
 				</executions>
