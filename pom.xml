@@ -30,7 +30,7 @@
 				<version>1.6</version>
 				<executions>
 					<execution>
-					<id>prepare</id>
+					<id>default-cli</id>
 					<phase>package</phase>
 					<configuration>
 						<target>
