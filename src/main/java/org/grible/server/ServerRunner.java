@@ -1,5 +1,6 @@
 package org.grible.server;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.jetty.annotations.AnnotationConfiguration;
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
 import org.eclipse.jetty.plus.webapp.PlusConfiguration;
@@ -12,8 +13,12 @@ import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 public class ServerRunner {
+	private static int port = 8123;
+
 	public static void main(String[] args) throws Exception {
-		Server server = new Server(2408);
+		parseArgs(args);
+
+		Server server = new Server(port);
 
 		WebAppContext webapp = new WebAppContext();
 		webapp.setContextPath("/");
@@ -24,5 +29,16 @@ public class ServerRunner {
 		server.setHandler(webapp);
 		server.start();
 		server.join();
+	}
+
+	private static void parseArgs(String[] args) {
+		if (args.length > 0) {
+			if (StringUtils.isNumeric(args[0])) {
+				port = Integer.parseInt(args[0]);
+			} else {
+				System.out.println("WARNING: 1st parameter ('" + args[0]
+						+ "') is not numeric so ignored. Default port number " + port + " is used instead.");
+			}
+		}
 	}
 }
