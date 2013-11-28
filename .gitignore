@@ -4,6 +4,7 @@
 .settings
 .idea
 .classpath
+.project
 
 # Package Files #
 *.jar
