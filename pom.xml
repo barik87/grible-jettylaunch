@@ -37,7 +37,7 @@
 							<delete dir="output"/>
 							<mkdir dir="output"/>
 							<unzip src="../grible/target/grible.war" dest="output/" />
-							<unzip src="target/grible-jettylaunch.jar" dest="output/" />
+							<unzip src="target/grible-jettylaunch-0.9.0-SNAPSHOT.jar" dest="output/" />
 							<zip destfile="target/grible.war" basedir="output" />
 						</tasks>
 					</configuration>
