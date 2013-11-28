@@ -13,7 +13,7 @@ import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 public class ServerRunner {
 	public static void main(String[] args) throws Exception {
-		Server server = new Server(1508);
+		Server server = new Server(2408);
 
 		WebAppContext webapp = new WebAppContext();
 		webapp.setContextPath("/");
