@@ -1,5 +1,7 @@
 package org.grible.server;
 
+import java.io.File;
+
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jetty.annotations.AnnotationConfiguration;
 import org.eclipse.jetty.plus.webapp.EnvConfiguration;
@@ -20,8 +22,8 @@ public class ServerRunner {
 
 		Server server = new Server(port);
 
-		System.getProperties().setProperty("jetty.home",".");
 		WebAppContext webapp = new WebAppContext();
+		webapp.setTempDirectory(new File("."));
 		webapp.setContextPath("/");
 		webapp.setWar("grible.war");
 		webapp.setConfigurations(new Configuration[] { new AnnotationConfiguration(), new WebXmlConfiguration(),
