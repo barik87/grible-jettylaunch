@@ -20,6 +20,7 @@ public class ServerRunner {
 
 		Server server = new Server(port);
 
+		System.getProperties().setProperty("jetty.home",".");
 		WebAppContext webapp = new WebAppContext();
 		webapp.setContextPath("/");
 		webapp.setWar("grible.war");
