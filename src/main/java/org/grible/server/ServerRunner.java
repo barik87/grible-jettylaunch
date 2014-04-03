@@ -15,6 +15,7 @@ import org.eclipse.jetty.webapp.WebInfConfiguration;
 import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 public class ServerRunner {
+	private static String webRoot = ".";
 	private static int port = 8123;
 
 	public static void main(String[] args) throws Exception {
@@ -23,7 +24,7 @@ public class ServerRunner {
 		Server server = new Server(port);
 
 		WebAppContext webapp = new WebAppContext();
-		webapp.setTempDirectory(new File("."));
+		webapp.setTempDirectory(new File(webRoot));
 		webapp.setContextPath("/");
 		webapp.setWar("grible.war");
 		webapp.setConfigurations(new Configuration[] { new AnnotationConfiguration(), new WebXmlConfiguration(),
@@ -35,12 +36,16 @@ public class ServerRunner {
 	}
 
 	private static void parseArgs(String[] args) {
-		if (args.length > 0) {
-			if (StringUtils.isNumeric(args[0])) {
-				port = Integer.parseInt(args[0]);
-			} else {
-				System.out.println("WARNING: 1st parameter ('" + args[0]
-						+ "') is not numeric so ignored. Default port number " + port + " is used instead.");
+		for (String arg : args) {
+			String[] parts = arg.split("=");
+			if (parts.length > 1) {
+				String key = parts[0];
+				String value = parts[1];
+				if (key.equals("--webroot")) {
+					webRoot = value;
+				} else if (key.equals("--httpPort") && StringUtils.isNumeric(value)) {
+					port = Integer.parseInt(value);
+				}
 			}
 		}
 	}
