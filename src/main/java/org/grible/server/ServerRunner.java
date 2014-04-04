@@ -16,6 +16,7 @@ import org.eclipse.jetty.webapp.WebXmlConfiguration;
 
 public class ServerRunner {
 	private static String webRoot = ".";
+	private static String war = "grible.war";
 	private static int port = 8123;
 
 	public static void main(String[] args) throws Exception {
@@ -26,7 +27,7 @@ public class ServerRunner {
 		WebAppContext webapp = new WebAppContext();
 		webapp.setTempDirectory(new File(webRoot));
 		webapp.setContextPath("/");
-		webapp.setWar("grible.war");
+		webapp.setWar(war);
 		webapp.setConfigurations(new Configuration[] { new AnnotationConfiguration(), new WebXmlConfiguration(),
 				new WebInfConfiguration(), new PlusConfiguration(), new MetaInfConfiguration(),
 				new FragmentConfiguration(), new EnvConfiguration() });
@@ -45,6 +46,8 @@ public class ServerRunner {
 					webRoot = value;
 				} else if (key.equals("--httpPort") && StringUtils.isNumeric(value)) {
 					port = Integer.parseInt(value);
+				} else if (key.equals("--war")) {
+					war = value;
 				}
 			}
 		}
