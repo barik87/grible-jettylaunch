@@ -20,7 +20,7 @@ public class ServerRunner {
 	static var port = 8123;
 
 	def static main(String[] args) throws Exception {
-		parseArgs(args);
+		parseArgs(args)
 
 		var server = new Server(port)
 		var webapp = new WebAppContext()
@@ -36,10 +36,9 @@ public class ServerRunner {
 
 	private def static parseArgs(String[] args) {
 		for (arg : args) {
-			val parts = arg.split("=")
 			if (arg.contains('=')) {
-				val key = parts.get(0)
-				val value = parts.get(1)
+				val key = arg.split('=').get(0)
+				val value = arg.split('=').get(1)
 				if (key == "--webroot") {
 					webRoot = value;
 				} else if (key == "--httpPort" && value.isNumeric) {

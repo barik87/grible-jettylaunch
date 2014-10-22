@@ -45,32 +45,31 @@ public class ServerRunner {
   
   private static void parseArgs(final String[] args) {
     for (final String arg : args) {
-      {
-        final String[] parts = arg.split("=");
-        boolean _contains = arg.contains("=");
-        if (_contains) {
-          final String key = parts[0];
-          final String value = parts[1];
-          boolean _equals = Objects.equal(key, "--webroot");
-          if (_equals) {
-            ServerRunner.webRoot = value;
+      boolean _contains = arg.contains("=");
+      if (_contains) {
+        String[] _split = arg.split("=");
+        final String key = _split[0];
+        String[] _split_1 = arg.split("=");
+        final String value = _split_1[1];
+        boolean _equals = Objects.equal(key, "--webroot");
+        if (_equals) {
+          ServerRunner.webRoot = value;
+        } else {
+          boolean _and = false;
+          boolean _equals_1 = Objects.equal(key, "--httpPort");
+          if (!_equals_1) {
+            _and = false;
           } else {
-            boolean _and = false;
-            boolean _equals_1 = Objects.equal(key, "--httpPort");
-            if (!_equals_1) {
-              _and = false;
-            } else {
-              boolean _isNumeric = StringUtils.isNumeric(value);
-              _and = _isNumeric;
-            }
-            if (_and) {
-              int _parseInt = Integer.parseInt(value);
-              ServerRunner.port = _parseInt;
-            } else {
-              boolean _equals_2 = Objects.equal(key, "--war");
-              if (_equals_2) {
-                ServerRunner.war = value;
-              }
+            boolean _isNumeric = StringUtils.isNumeric(value);
+            _and = _isNumeric;
+          }
+          if (_and) {
+            int _parseInt = Integer.parseInt(value);
+            ServerRunner.port = _parseInt;
+          } else {
+            boolean _equals_2 = Objects.equal(key, "--war");
+            if (_equals_2) {
+              ServerRunner.war = value;
             }
           }
         }
