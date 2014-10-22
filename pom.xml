@@ -11,7 +11,7 @@
 	<build>
 		<defaultGoal>package</defaultGoal>
 		<plugins>
-		    <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
@@ -23,12 +23,12 @@
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
-		        		<archive>
+					<archive>
 						<manifest>
 							<mainClass>org.grible.server.ServerRunner</mainClass>
-		        			</manifest>
-		        		</archive>
-		        		<descriptorRefs>
+						</manifest>
+					</archive>
+					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 				</configuration>
@@ -39,24 +39,24 @@
 				<version>1.6</version>
 				<executions>
 					<execution>
-					<id>default-cli</id>
-					<phase>package</phase>
-					<configuration>
-						<tasks>
-							<delete dir="output"/>
-							<mkdir dir="output"/>
-							<unzip src="../grible/target/grible.war" dest="output/" />
-							<unzip dest="output/">
-								<fileset dir="target">
-									<include name="grible-jettylaunch*.jar"/>
-								</fileset>
-							</unzip>
-							<zip destfile="target/grible.war" basedir="output" />
-						</tasks>
-					</configuration>
-					<goals>
-						<goal>run</goal>
-					</goals>
+						<id>default-cli</id>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<delete dir="output" />
+								<mkdir dir="output" />
+								<unzip src="../grible/target/grible.war" dest="output/" />
+								<unzip dest="output/">
+									<fileset dir="target">
+										<include name="grible-jettylaunch*.jar" />
+									</fileset>
+								</unzip>
+								<zip destfile="target/grible.war" basedir="output" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
@@ -98,6 +98,11 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId>
+			<version>2.7.1</version>
 		</dependency>
 	</dependencies>
 
